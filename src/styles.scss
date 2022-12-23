@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'src/sass/_variables.scss';
+
+html {
+  font-family: sans-serif;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.alert {
+  color: $alert-color;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.p-2 {
+  padding: 2rem;
+}

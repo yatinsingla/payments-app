@@ -1,0 +1,51 @@
+<form [formGroup]="paymentForm" (submit)="submitForm()">
+  <div class="d-flex flex-column form-padding ">
+    <div class="d-flex justify-space-between flex-layout">
+      <div class="d-flex flex-column column-width row-padding">
+        <label for="name" class="label-padding">Name<span class="alert">*</span></label>
+        <input id="name" class="input-field" type="text" formControlName="name">
+        <div *ngIf="paymentForm.controls.name.invalid && (paymentForm.controls.name.dirty || paymentForm.controls.name.touched)" class="alert">
+          <div *ngIf="paymentForm.controls.name.errors?.required">
+            Name is required.
+          </div>
+        </div>
+      </div>
+  
+      <div class="d-flex flex-column column-width row-padding">
+        <label for="email" class="label-padding">Email</label>
+        <input id="email" class="input-field" type="email" formControlName="email">
+        <div *ngIf="paymentForm.controls.email.invalid && (paymentForm.controls.email.dirty || paymentForm.controls.email.touched)" class="alert">
+          Incorrect email format.
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column row-padding">
+      <label for="account-number" class="label-padding">Account Number<span class="alert">*</span></label>
+      <input id="account-number" class="input-field" type="number" (keydown)="allowOnlyNumbers($event)" formControlName="accountNumber">
+      <div *ngIf="paymentForm.controls.accountNumber.invalid && (paymentForm.controls.accountNumber.dirty || paymentForm.controls.accountNumber.touched)" class="alert">
+        <div *ngIf="paymentForm.controls.accountNumber.errors?.required">
+          Account Number is required.
+        </div>
+        <div *ngIf="paymentForm.controls.accountNumber.errors?.max">
+          Account Number too long.
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column row-padding">
+      <label for="payment-amount" class="label-padding">Payment Amount<span class="alert">*</span></label>
+      <input id="payment-amount" class="input-field" type="number" (keydown)="allowOnlyNumbers($event)" formControlName="paymentAmount">
+      <div *ngIf="paymentForm.controls.paymentAmount.invalid && (paymentForm.controls.paymentAmount.dirty || paymentForm.controls.paymentAmount.touched)" class="alert">
+        <div *ngIf="paymentForm.controls.paymentAmount.errors?.required">
+          Payment Amount is required.
+        </div>
+      </div>
+      <div class="alert" *ngIf="paymentForm.errors?.payment">
+        Payment Amount cannot be more than 500.
+      </div>
+    </div>
+
+    <button type="submit" class="button" [ngClass]="!paymentForm.valid ? 'disable-opacity' : ''" [disabled]="!paymentForm.valid">Submit</button>
+  </div>
+</form>
